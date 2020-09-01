@@ -49,6 +49,9 @@ calc_button.grid (column = 0, row = 2, columnspan = 2, sticky = "EW")
 # 3. If we expand the code till now, we did main Frame did not expands as it takes enough space what is required to place widget not more than that 
 root.columnconfigure(0, weight = 1) ## this tells when expnad the column 0 of "root" must takes 100% of expands in the middle 
 
+# 9 . Binding the shortcut keys on keyboard such as "Enter"
+root.bind("<Return>", calculate_feet)   ## Middle enter
+root.bind("<KP_Enter>", calculate_feet) ## Num pad enter
 
 
 root.mainloop()
