@@ -6,6 +6,7 @@ from tkinter import ttk
 root = tk.Tk()
 root.title("Distance Converter")
 
+# 10. Change the font of root window 
 font.nametofont("TkDefaultFont").configure(size = 15)  # But this does not set for entry widget
 
 # 5. take a stringVar which can store meter input value 
@@ -34,18 +35,18 @@ main.grid() # by default main is going to place in column 0 and row 0
 # 2. After creating a frame, put widget into it
 
 meters_label = ttk.Label(main, text = "Meters : ")
-meters_input = ttk.Entry(main, width = 10, textvariable = meters_value, font = ("Courier", 15))
+meters_input = ttk.Entry(main, width = 10, textvariable = meters_value, font = ("", 15))
 feet_label   = ttk.Label(main, text = "Label : ") 
 feet_display = ttk.Label(main, textvariable = feet_value) # NOTE : when we use textvariable it will overwrite text field 
 calc_button  = ttk.Button(main, text = "Calculate", command = calculate_feet)  # NOTE : do not call calculate_feet() just call calculate_feet
 
 # 3. Place all the into the main Frame using grid 
-meters_label.grid(column = 0, row = 0, sticky = "W" , padx = 15, pady = 15)
-meters_input.grid(column = 1, row = 0, sticky = "EW", padx = 15, pady = 15)
+meters_label.grid(column = 0, row = 0, sticky = "W") 
+meters_input.grid(column = 1, row = 0, sticky = "EW")
 meters_input.focus()
 
-feet_label.grid(column = 0, row = 1, sticky = "W", padx = 15, pady = 15) 
-feet_display.grid(column = 1, row = 1, sticky = "EW", padx = 15, pady = 15) 
+feet_label.grid(column = 0, row = 1, sticky = "W")
+feet_display.grid(column = 1, row = 1, sticky = "EW")
 
 calc_button.grid (column = 0, row = 2, columnspan = 2, sticky = "EW")
 
@@ -55,6 +56,10 @@ root.columnconfigure(0, weight = 1) ## this tells when expnad the column 0 of "r
 # 9 . Binding the shortcut keys on keyboard such as "Enter"
 root.bind("<Return>", calculate_feet)   ## Middle enter
 root.bind("<KP_Enter>", calculate_feet) ## Num pad enter
+
+# 11. winfo_children method to change padding and all of children
+for child in main.winfo_children(): 
+    child.grid_configure(padx = 15, pady = 15)
 
 
 root.mainloop()
