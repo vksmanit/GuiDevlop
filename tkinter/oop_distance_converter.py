@@ -29,13 +29,15 @@ class Distance_converter(tk.Tk):
         self.frames[Feet_to_meters_calc] = feet_to_meters ## keys -- value binding
         self.frames[Meter_to_feet_calc] = meters_to_feet
         
-        #self.show_frame(Feet_to_meters_calc)
+        self.show_frame(Feet_to_meters_calc)  # We need it for woking <Return> and <KP_Enter> key 
         #frame.tkraise()
 #       self.bind("<Return>", frame.calculate)   
 #       self.bind("<KP_Enter>", frame.calculate) 
 
     def show_frame (self, container) : 
         frame = self.frames[container]
+        self.bind("<Return>", frame.calculate)   
+        self.bind("<KP_Enter>", frame.calculate) 
         frame.tkraise()
 
     
