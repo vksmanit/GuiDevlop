@@ -7,18 +7,49 @@ style = ttk.Style(root)
 
 
 name = ttk.Label(root, text = "Hello, World")
-entry = ttk.Entry(root, width = 15)
 name.pack()
 
-## NOTE :: ttk widget are configurable NOT tk widget
+# 1. Get style of TLabel (default style of label widget) first -- what structure it is using 
+# 
+# [('Label.border', {'sticky': 'nswe', 'border': '1', 'children': [('Label.padding', {'sticky': 'nswe', 'border': '1', 'children': [('Label.label'
+# , {'sticky': 'nswe'})]})]})]
+# 
+#  border -- padding -- label 
+#
+print (style.layout("TLabel"))
 
-## 1. TO know which style is using name widget -- just enable below code 
-#print (name["style"])  ## no print --- default
-## 2. to know default style -- TLabel
-#print (name.winfo_class() ## Tlabel)
+
+# these lines will print available options 
+print (style.element_options("Label.border"))
+print (style.element_options("Label.padding"))
+print (style.element_options("Label.label"))
+
+# these lines will print what is current font is
+print (style.lookup("TLabel", "font"))
+print (style.lookup("TLabel", "foreground"))
+print (style.lookup("TLabel", "compound"))
 
 
-style.configure("TLabel", font = ("Segoe UI", 20)) ## this will change TLabel --- use font specified 
+#####################################################33
+# change the theme 
+style.theme_use("clam")
+
+# these lines will print available options 
+print (style.element_options("Label.border"))
+print (style.element_options("Label.padding"))
+print (style.element_options("Label.label"))
+
+# these lines will print what is current font is
+print (style.lookup("TLabel", "font"))
+print (style.lookup("TLabel", "foreground"))
+print (style.lookup("TLabel", "compound"))
+
+## this show that we are having more configurable parameter for clam theme
+
+## giving bordercolor and borderwidth -- NOTE - we need to configure relief 
+style.configure("TLabel", bordercolor = "#f00")
+style.configure("TLabel", borderwidth = 20)
+style.configure("TLabel", relief = "solid")
 
 
 
