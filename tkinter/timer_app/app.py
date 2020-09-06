@@ -2,7 +2,7 @@
 import tkinter as tk 
 from tkinter import ttk 
 from collections import deque
-from frames import Timer
+from frames import Timer, Setting
 
 class PromodoroTimer (tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -26,8 +26,11 @@ class PromodoroTimer (tk.Tk):
         container.columnconfigure(0, weight = 1)
 
         
-        timer_frame = Timer(container, self)
-        timer_frame.grid(row = 0, column = 0, sticky = "NESW")
+        #timer_frame = Timer(container, self)
+        #timer_frame.grid(row = 0, column = 0, sticky = "NESW")
+
+        setting_frame = Setting(container, self)
+        setting_frame.grid(row = 0, column = 0, sticky = "NESW")
 
 app = PromodoroTimer()
 app.mainloop()
