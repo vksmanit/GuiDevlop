@@ -2,8 +2,11 @@ import tkinter as tk
 from tkinter import ttk 
 
 class Setting(ttk.Frame):
-    def __init__(self, parent, controller, *args, **kwargs):
+    def __init__(self, parent, controller, show_timer, *args, **kwargs):
         super().__init__(parent)
+
+        self.columnconfigure(0, weight = 1)
+        self.rowconfigure(2, weight = 1)
 
         setting_container = ttk.Frame(
                 self, 
@@ -38,4 +41,10 @@ class Setting(ttk.Frame):
         ## adding some padding 
         for child in setting_container.winfo_children():
             child.grid_configure(padx = 5, pady = 5)
+        
+        button_cotainer = ttk.Frame(self)
+        button_cotainer.grid(sticky = "EW", padx = 10)
+        button_cotainer.columnconfigure(0, weight = 1)
 
+        timer_button = ttk.Button(button_cotainer, text = "<- Back", command = show_timer, cursor = "hand2")
+        timer_button.grid(row = 0, column = 0, sticky = "EW", padx = 2)

@@ -4,7 +4,7 @@ from tkinter import ttk
 from collections import deque
 
 class Timer(ttk.Frame):
-    def __init__(self, container, controller, *args, **kwargs):
+    def __init__(self, container, controller, show_setting, *args, **kwargs):
         super().__init__(container, *args, **kwargs)
 
         self.controller = controller
@@ -13,12 +13,14 @@ class Timer(ttk.Frame):
 
         self.current_timer_label = tk.StringVar(value = controller.timer_schedule[0])
         timer_description = ttk.Label(self,  textvariable = self.current_timer_label)
+        setting_button = ttk.Button (self, text = "Settings", command = show_setting, cursor = "hand2")
+        setting_button.grid(row = 0, column = 1, sticky = "E", padx = 10, pady = (10,0))
         timer_description.grid(row = 0, column = 0, sticky = "W", padx = (10, 0), pady = (10, 0))
         self.timer_running = False 
         self._timer_decrement_job = None ## variable starting with _ --- is a private variable : NoBody outside the class can access it
 
         timer_frame = ttk.Frame (self, height = "100")
-        timer_frame.grid(row = 1, column = 0, pady = (10,0), sticky = "NESW")
+        timer_frame.grid(row = 1, column = 0, columnspan = 2,  pady = (10,0), sticky = "NESW")
         timer_counter = ttk.Label (timer_frame, 
                 textvariable = self.current_time
                 )
@@ -27,7 +29,7 @@ class Timer(ttk.Frame):
         # timer_counter.grid()
         #
         button_container = ttk.Frame(self, padding = 10)
-        button_container.grid(row = 2, column = 0, sticky = "EW")
+        button_container.grid(row = 2, column = 0, columnspan = 2, sticky = "EW")
         button_container.columnconfigure((0, 1 ,2), weight = 1)
 
         self.start_button = ttk.Button(button_container, text = "Start", command = self.start_timer, cursor = "hand2")
